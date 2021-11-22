@@ -10,29 +10,26 @@ namespace UIElement
     {
         static void Main(string[] args)
         {
-            int health = 5, maxHealth = 10;
-            int mana = 3, maxMana = 10;
-
+            int healthProcent = 0, maxHealth = 10;
+            
             while (true)
             {
-                DrawBar(health, maxHealth, ConsoleColor.Red, 0, '_');
-                DrawBar(mana, maxMana, ConsoleColor.Blue, 1, '_');
+                DrawBar(healthProcent, maxHealth, ConsoleColor.Red, 0, '_');
 
                 Console.SetCursorPosition(0, 5);
 
-                Console.Write("Введите число, на которое изменяться жизни:");
-                health += Convert.ToInt32(Console.ReadLine());
-                Console.Write("Введите число, на которое измениться мана:");
-                mana += Convert.ToInt32(Console.ReadLine());
+                Console.Write("Введите процент, на который заполнить здоровье:");
+                healthProcent = Convert.ToInt32(Console.ReadLine());
 
                 Console.ReadKey();
                 Console.Clear();
             }
         }
 
-        static void DrawBar(int value, int maxValue, ConsoleColor color, int position, char symbol = ' ')
+        static void DrawBar(int procent, int maxValue, ConsoleColor color, int position, char symbol = ' ')
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
+            int value = procent * maxValue / 100;
             string bar = "";
 
             for (int i = 0; i < value; i++)
