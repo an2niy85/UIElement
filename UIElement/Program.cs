@@ -14,7 +14,7 @@ namespace UIElement
             
             while (true)
             {
-                DrawBar(healthProcent, maxHealth, ConsoleColor.Red, 0, '_');
+                DrawBar(healthProcent, maxHealth, 0, '#');
 
                 Console.SetCursorPosition(0, 5);
 
@@ -26,9 +26,9 @@ namespace UIElement
             }
         }
 
-        static void DrawBar(int procent, int maxValue, ConsoleColor color, int position, char symbol = ' ')
+        static void DrawBar(int procent, int maxValue, int position, char symbol)
         {
-            ConsoleColor defaultColor = Console.BackgroundColor;
+            char defaultSymbol = '_';
             int value = procent * maxValue / 100;
             string bar = "";
 
@@ -39,15 +39,13 @@ namespace UIElement
 
             Console.SetCursorPosition(0, position);
             Console.Write('[');
-            Console.BackgroundColor = color;
             Console.Write(bar);
-            Console.BackgroundColor = defaultColor;
-
+            
             bar = "";
 
             for (int i = value; i < maxValue; i++)
             {
-                bar += symbol;
+                bar += defaultSymbol;
             }
             Console.Write(bar + ']');
         }
